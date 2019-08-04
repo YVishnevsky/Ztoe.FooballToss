@@ -72,20 +72,21 @@
             // addTeamsMenuItem
             // 
             this.addTeamsMenuItem.Name = "addTeamsMenuItem";
-            this.addTeamsMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.addTeamsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addTeamsMenuItem.Text = "Завантажити ...";
             this.addTeamsMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem2_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(157, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "Вихід";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.ToolStripMenuItem3_Click);
             // 
             // налаштуванняToolStripMenuItem
             // 
@@ -155,7 +156,7 @@
             // selectGroupContextMenu
             // 
             this.selectGroupContextMenu.Name = "selectGroupContextMenu";
-            this.selectGroupContextMenu.Size = new System.Drawing.Size(181, 26);
+            this.selectGroupContextMenu.Size = new System.Drawing.Size(61, 4);
             this.selectGroupContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.SelectGroupContextMenu_ItemClicked);
             // 
             // Form1

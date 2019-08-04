@@ -80,6 +80,7 @@
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(153, 66);
             this.Controls.Add(this.groupQuantity);
             this.Controls.Add(this.button1);
@@ -88,6 +89,7 @@
             this.MinimizeBox = false;
             this.Name = "OptionsDlg";
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Налаштування";
             this.TopMost = true;

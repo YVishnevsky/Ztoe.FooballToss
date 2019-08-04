@@ -83,5 +83,10 @@ namespace Toss
             groups[e.ClickedItem.Text].Items.Add($"{groups[e.ClickedItem.Text].Items.Count+1}. {teamsListBox.Items[teamsListBox.SelectedIndex]}");
             teamsListBox.Items.RemoveAt(teamsListBox.SelectedIndex);
         }
+
+        private void ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
