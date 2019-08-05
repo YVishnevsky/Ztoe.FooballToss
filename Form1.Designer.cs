@@ -37,15 +37,18 @@
             this.налаштуванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupQuantityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.teamsListBox = new System.Windows.Forms.ListBox();
             this.groupsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.teamsListBox = new System.Windows.Forms.ListBox();
             this.addTeamsOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.selectGroupContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.backContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemBack = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.backContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -72,19 +75,19 @@
             // addTeamsMenuItem
             // 
             this.addTeamsMenuItem.Name = "addTeamsMenuItem";
-            this.addTeamsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addTeamsMenuItem.Size = new System.Drawing.Size(157, 22);
             this.addTeamsMenuItem.Text = "Завантажити ...";
             this.addTeamsMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem2_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(157, 22);
             this.toolStripMenuItem3.Text = "Вихід";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.ToolStripMenuItem3_Click);
             // 
@@ -101,7 +104,7 @@
             this.groupQuantityToolStripMenuItem.Name = "groupQuantityToolStripMenuItem";
             this.groupQuantityToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.groupQuantityToolStripMenuItem.Text = "Кількість груп";
-            this.groupQuantityToolStripMenuItem.Click += new System.EventHandler(this.КількістьГрупToolStripMenuItem_Click);
+            this.groupQuantityToolStripMenuItem.Click += new System.EventHandler(this.GroupQuantityToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -111,31 +114,18 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.teamsListBox);
+            this.splitContainer1.Panel1.Controls.Add(this.groupsLayoutPanel);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupsLayoutPanel);
+            this.splitContainer1.Panel2.Controls.Add(this.teamsListBox);
             this.splitContainer1.Size = new System.Drawing.Size(1171, 663);
-            this.splitContainer1.SplitterDistance = 268;
+            this.splitContainer1.SplitterDistance = 835;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // teamsListBox
-            // 
-            this.teamsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.teamsListBox.Font = new System.Drawing.Font("Sitka Small", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamsListBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.teamsListBox.FormattingEnabled = true;
-            this.teamsListBox.ItemHeight = 24;
-            this.teamsListBox.Location = new System.Drawing.Point(0, 0);
-            this.teamsListBox.Name = "teamsListBox";
-            this.teamsListBox.Size = new System.Drawing.Size(268, 663);
-            this.teamsListBox.TabIndex = 0;
-            this.teamsListBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TeamsListBox_MouseUp);
             // 
             // groupsLayoutPanel
             // 
-            this.groupsLayoutPanel.ColumnCount = 4;
+            this.groupsLayoutPanel.ColumnCount = 1;
             this.groupsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.groupsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.groupsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -145,8 +135,21 @@
             this.groupsLayoutPanel.Name = "groupsLayoutPanel";
             this.groupsLayoutPanel.RowCount = 1;
             this.groupsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.groupsLayoutPanel.Size = new System.Drawing.Size(899, 663);
+            this.groupsLayoutPanel.Size = new System.Drawing.Size(835, 663);
             this.groupsLayoutPanel.TabIndex = 0;
+            // 
+            // teamsListBox
+            // 
+            this.teamsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.teamsListBox.Font = new System.Drawing.Font("Sitka Small", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamsListBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.teamsListBox.FormattingEnabled = true;
+            this.teamsListBox.ItemHeight = 25;
+            this.teamsListBox.Location = new System.Drawing.Point(0, 0);
+            this.teamsListBox.Name = "teamsListBox";
+            this.teamsListBox.Size = new System.Drawing.Size(332, 663);
+            this.teamsListBox.TabIndex = 0;
+            this.teamsListBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TeamsListBox_MouseUp);
             // 
             // addTeamsOpenFileDialog
             // 
@@ -158,6 +161,20 @@
             this.selectGroupContextMenu.Name = "selectGroupContextMenu";
             this.selectGroupContextMenu.Size = new System.Drawing.Size(61, 4);
             this.selectGroupContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.SelectGroupContextMenu_ItemClicked);
+            // 
+            // backContextMenu
+            // 
+            this.backContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemBack});
+            this.backContextMenu.Name = "backContextMenu";
+            this.backContextMenu.Size = new System.Drawing.Size(181, 48);
+            this.backContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.BackContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItemBack
+            // 
+            this.toolStripMenuItemBack.Name = "toolStripMenuItemBack";
+            this.toolStripMenuItemBack.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemBack.Text = "Повернути";
             // 
             // Form1
             // 
@@ -175,6 +192,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.backContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,6 +212,8 @@
         private System.Windows.Forms.OpenFileDialog addTeamsOpenFileDialog;
         private System.Windows.Forms.TableLayoutPanel groupsLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip selectGroupContextMenu;
+        private System.Windows.Forms.ContextMenuStrip backContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBack;
     }
 }
 

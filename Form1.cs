@@ -15,6 +15,7 @@ namespace Toss
     {
         readonly Dictionary<string, ListBox> groups = new Dictionary<string, ListBox>();
         readonly string groupNames = "ABCDEFGHIJ";
+        private ListBox activeListBox;
 
         public Form1()
         {
@@ -31,30 +32,33 @@ namespace Toss
             teamsListBox.Items.AddRange(File.ReadAllLines(addTeamsOpenFileDialog.FileName, Encoding.GetEncoding(1251)));
         }
 
-        private void КількістьГрупToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GroupQuantityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dlg = new OptionsDlg();
-            groups.Clear();
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 if (dlg.groupQuantity.Value > 0)
                 {
+                    groups.Clear();
+                    groupsLayoutPanel.Controls.Clear();
                     groupsLayoutPanel.RowStyles.Clear();
                     int groupCount = (int)dlg.groupQuantity.Value;
-                    groupsLayoutPanel.RowCount = groupCount / 4 + (groupCount % 4 > 0 ? 1 : 0);
+                    groupsLayoutPanel.RowCount = groupCount;
                     for (int i = 0; i < groupsLayoutPanel.RowCount; i++)
-                        groupsLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)100 / groupsLayoutPanel.RowCount));
+                        groupsLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)100 / groupCount));
 
                     for (int i=0; i<groupCount; i++)
                     {
                         var gb = new GroupBox();
-                        gb.Text = $"Група {groupNames[i]}";
-                        gb.Font = new Font("Sitka Small", 10);
+                        gb.Text = $"ГРУПА {groupNames[i]}";
+                        gb.Font = new Font("Sitka Small", 10, FontStyle.Bold);
                         gb.Dock = DockStyle.Fill;
 
                         var lb = new ListBox();
                         lb.Dock = DockStyle.Fill;
+                        lb.Font = new Font("Sitka Small", 12.5f, FontStyle.Bold);
+                        lb.MouseUp += new MouseEventHandler(GroupListBox_MouseUp);
                         gb.Controls.Add(lb);
 
                         groupsLayoutPanel.Controls.Add(gb, i % 4, i / 4);
@@ -62,6 +66,19 @@ namespace Toss
 
                         selectGroupContextMenu.Items.Add(gb.Text);
                     }
+                }
+            }
+        }
+
+        private void GroupListBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                activeListBox = sender as ListBox;
+                activeListBox.SelectedIndex = activeListBox.IndexFromPoint(e.Location);
+                if (activeListBox.SelectedIndex != -1 && activeListBox.Items.Count > 0 && activeListBox.SelectedIndex == activeListBox.Items.Count - 1)
+                {
+                    backContextMenu.Show(((Control)sender).PointToScreen(e.Location));
                 }
             }
         }
@@ -80,13 +97,24 @@ namespace Toss
 
         private void SelectGroupContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            groups[e.ClickedItem.Text].Items.Add($"{groups[e.ClickedItem.Text].Items.Count+1}. {teamsListBox.Items[teamsListBox.SelectedIndex]}");
+            groups[e.ClickedItem.Text].Items.Add($"{groups[e.ClickedItem.Text].Items.Count + 1}. {teamsListBox.Items[teamsListBox.SelectedIndex]}");
             teamsListBox.Items.RemoveAt(teamsListBox.SelectedIndex);
         }
 
         private void ToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void BackContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (activeListBox != null)
+            {
+                var team = activeListBox.Items[activeListBox.SelectedIndex].ToString();
+                teamsListBox.Items.Add(team.Substring(team.IndexOf(". ") + 2));
+                activeListBox.Items.RemoveAt(activeListBox.SelectedIndex);
+                activeListBox = null;
+            }
         }
     }
 }
