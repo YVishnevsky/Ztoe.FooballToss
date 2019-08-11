@@ -43,6 +43,8 @@
             this.selectGroupContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.backContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemBack = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupFontDialog = new System.Windows.Forms.FontDialog();
+            this.selectFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -94,7 +96,8 @@
             // налаштуванняToolStripMenuItem
             // 
             this.налаштуванняToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.groupQuantityToolStripMenuItem});
+            this.groupQuantityToolStripMenuItem,
+            this.selectFontToolStripMenuItem});
             this.налаштуванняToolStripMenuItem.Name = "налаштуванняToolStripMenuItem";
             this.налаштуванняToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.налаштуванняToolStripMenuItem.Text = "Налаштування";
@@ -102,7 +105,7 @@
             // groupQuantityToolStripMenuItem
             // 
             this.groupQuantityToolStripMenuItem.Name = "groupQuantityToolStripMenuItem";
-            this.groupQuantityToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.groupQuantityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.groupQuantityToolStripMenuItem.Text = "Кількість груп";
             this.groupQuantityToolStripMenuItem.Click += new System.EventHandler(this.GroupQuantityToolStripMenuItem_Click);
             // 
@@ -167,14 +170,22 @@
             this.backContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemBack});
             this.backContextMenu.Name = "backContextMenu";
-            this.backContextMenu.Size = new System.Drawing.Size(181, 48);
+            this.backContextMenu.Size = new System.Drawing.Size(135, 26);
             this.backContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.BackContextMenu_ItemClicked);
             // 
             // toolStripMenuItemBack
             // 
             this.toolStripMenuItemBack.Name = "toolStripMenuItemBack";
-            this.toolStripMenuItemBack.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemBack.Size = new System.Drawing.Size(134, 22);
             this.toolStripMenuItemBack.Text = "Повернути";
+            // 
+            // selectFontToolStripMenuItem
+            // 
+            this.selectFontToolStripMenuItem.Enabled = false;
+            this.selectFontToolStripMenuItem.Name = "selectFontToolStripMenuItem";
+            this.selectFontToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectFontToolStripMenuItem.Text = "Вибір шрифту";
+            this.selectFontToolStripMenuItem.Click += new System.EventHandler(this.SelectFontToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -214,6 +225,8 @@
         private System.Windows.Forms.ContextMenuStrip selectGroupContextMenu;
         private System.Windows.Forms.ContextMenuStrip backContextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBack;
+        private System.Windows.Forms.ToolStripMenuItem selectFontToolStripMenuItem;
+        private System.Windows.Forms.FontDialog groupFontDialog;
     }
 }
 

@@ -29,6 +29,10 @@ namespace Toss
 
         private void AddTeamsOpenFileDialog_FileOk(object sender, CancelEventArgs e)
         {
+            teamsListBox.Items.Clear();
+            foreach (var g in groups)
+                g.Value.Items.Clear();
+
             teamsListBox.Items.AddRange(File.ReadAllLines(addTeamsOpenFileDialog.FileName, Encoding.GetEncoding(1251)));
         }
 
@@ -38,6 +42,16 @@ namespace Toss
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
+                foreach (var g in groups)
+                {
+                    foreach(var item in g.Value.Items)
+                        teamsListBox.Items.Add(item.ToString().Substring(item.ToString().IndexOf(". ") + 2));
+                    g.Value.Items.Clear();
+                    
+                }
+                selectFontToolStripMenuItem.Enabled = true;
+                selectGroupContextMenu.Items.Clear();
+
                 if (dlg.groupQuantity.Value > 0)
                 {
                     groups.Clear();
@@ -114,6 +128,25 @@ namespace Toss
                 teamsListBox.Items.Add(team.Substring(team.IndexOf(". ") + 2));
                 activeListBox.Items.RemoveAt(activeListBox.SelectedIndex);
                 activeListBox = null;
+            }
+        }
+
+        private void SelectFontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (groups.Any())
+            {
+                groupFontDialog.ShowColor = true;
+                groupFontDialog.Font = groups.First().Value.Font;
+                groupFontDialog.Color = groups.First().Value.ForeColor;
+
+                if (groupFontDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    foreach (var l in groups)
+                    {
+                        l.Value.Font = groupFontDialog.Font;
+                        l.Value.ForeColor = groupFontDialog.Color;
+                    }
+                }
             }
         }
     }
