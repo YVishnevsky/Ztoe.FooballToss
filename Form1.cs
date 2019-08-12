@@ -38,47 +38,52 @@ namespace Toss
 
         private void GroupQuantityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dlg = new OptionsDlg();
-
-            if (DialogResult.OK == dlg.ShowDialog())
+            using (var dlg = new OptionsDlg())
             {
-                foreach (var g in groups)
+                if (DialogResult.OK == dlg.ShowDialog())
                 {
-                    foreach(var item in g.Value.Items)
-                        teamsListBox.Items.Add(item.ToString().Substring(item.ToString().IndexOf(". ") + 2));
-                    g.Value.Items.Clear();
-                    
-                }
-                selectFontToolStripMenuItem.Enabled = true;
-                selectGroupContextMenu.Items.Clear();
-
-                if (dlg.groupQuantity.Value > 0)
-                {
-                    groups.Clear();
-                    groupsLayoutPanel.Controls.Clear();
-                    groupsLayoutPanel.RowStyles.Clear();
-                    int groupCount = (int)dlg.groupQuantity.Value;
-                    groupsLayoutPanel.RowCount = groupCount;
-                    for (int i = 0; i < groupsLayoutPanel.RowCount; i++)
-                        groupsLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)100 / groupCount));
-
-                    for (int i=0; i<groupCount; i++)
+                    foreach (var g in groups)
                     {
-                        var gb = new GroupBox();
-                        gb.Text = $"ГРУПА {groupNames[i]}";
-                        gb.Font = new Font("Sitka Small", 10, FontStyle.Bold);
-                        gb.Dock = DockStyle.Fill;
+                        foreach (var item in g.Value.Items)
+                            teamsListBox.Items.Add(item.ToString().Substring(item.ToString().IndexOf(". ") + 2));
+                        g.Value.Items.Clear();
 
-                        var lb = new ListBox();
-                        lb.Dock = DockStyle.Fill;
-                        lb.Font = new Font("Sitka Small", 12.5f, FontStyle.Bold);
-                        lb.MouseUp += new MouseEventHandler(GroupListBox_MouseUp);
-                        gb.Controls.Add(lb);
+                    }
+                    selectFontToolStripMenuItem.Enabled = true;
+                    selectGroupContextMenu.Items.Clear();
 
-                        groupsLayoutPanel.Controls.Add(gb, i % 4, i / 4);
-                        groups.Add(gb.Text, lb);
+                    if (dlg.groupQuantity.Value > 0)
+                    {
+                        groups.Clear();
+                        groupsLayoutPanel.Controls.Clear();
+                        groupsLayoutPanel.RowStyles.Clear();
+                        int groupCount = (int)dlg.groupQuantity.Value;
+                        groupsLayoutPanel.RowCount = groupCount;
+                        for (int i = 0; i < groupsLayoutPanel.RowCount; i++)
+                            groupsLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, (float)100 / groupCount));
 
-                        selectGroupContextMenu.Items.Add(gb.Text);
+                        for (int i = 0; i < groupCount; i++)
+                        {
+                            var gb = new GroupBox
+                            {
+                                Text = $"ГРУПА {groupNames[i]}",
+                                Font = new Font("Sitka Small", 10, FontStyle.Bold),
+                                Dock = DockStyle.Fill
+                            };
+
+                            var lb = new ListBox
+                            {
+                                Dock = DockStyle.Fill,
+                                Font = new Font("Sitka Small", 12.5f, FontStyle.Bold)
+                            };
+                            lb.MouseUp += new MouseEventHandler(GroupListBox_MouseUp);
+                            gb.Controls.Add(lb);
+
+                            groupsLayoutPanel.Controls.Add(gb, i % 4, i / 4);
+                            groups.Add(gb.Text, lb);
+
+                            selectGroupContextMenu.Items.Add(gb.Text);
+                        }
                     }
                 }
             }
