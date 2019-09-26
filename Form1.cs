@@ -74,7 +74,7 @@ namespace Toss
                             var lb = new ListBox
                             {
                                 Dock = DockStyle.Fill,
-                                Font = new Font("Sitka Small", 12.5f, FontStyle.Bold)
+                                Font = new Font("Franklin Gothic Medium Cond", 16f)
                             };
                             lb.MouseUp += new MouseEventHandler(GroupListBox_MouseUp);
                             gb.Controls.Add(lb);
